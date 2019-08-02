@@ -1,4 +1,5 @@
 #!/bin/bash
 
-get_micro.sh
-zsh_setup.sh
+`pwd`/useful-scripts/get_micro.sh
+`pwd`/useful-scripts/zsh_setup.sh
+
