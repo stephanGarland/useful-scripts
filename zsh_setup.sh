@@ -26,7 +26,7 @@ fi
 
 which git
 if [[ $? -eq 0 ]]; then
-	wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+	curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install.sh
 	chmod +x install.sh
 	`./install.sh --unattended`
 	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
