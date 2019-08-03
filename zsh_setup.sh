@@ -21,10 +21,10 @@ else
 	elif [[ $distro =~ "suse" ]]; then
 		printf "\nI will now ask for your sudo privileges to install zsh"
 		sudo zypper refresh && sudo zypper install -y zsh
-	fi
 	else
 		printf "\nSorry, your distro is not currently supported!"
 		exit 127
+	fi
 fi
 
 which git
