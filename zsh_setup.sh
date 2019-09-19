@@ -11,7 +11,7 @@ if [[ $? -eq 0 ]]; then
 	printf "\nzsh already installed"
 else
 	distro=`cat /etc/os-release | grep -w ID`
-	if [[ $distro =~ "debian" ]]; then
+	if [[ $distro =~ "debian" || "ubuntu" ]]; then
 		printf "\nI will now ask for your sudo privileges to install zsh"
 		# apt-get for backwards compatibility
 		sudo apt-get update && sudo apt-get install -y zsh
