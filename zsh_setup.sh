@@ -2,8 +2,18 @@
 
 mac_check=`uname`
 if [[ $mac_check == "Darwin" ]]; then
-	printf "\nPlease install zsh using Homebrew or a similar package manager"
-	exit 127 # command not found, since the next command would fail
+	which brew
+	if [[ $? -eq 0 ]]; then
+		printf "\nInstalling zsh using Homebrew\n"
+		brew install zsh
+	else
+		printf "\nDo you want to install Homebrew (Y/N)? "
+		read brew_install
+		case ${brew_install} in
+			([nN]) printf "\nPlease install zsh using whatever means you're comfortable with. Goodbye!" && exit 127 ;;
+			([yY]) printf "\nInstalling Homebrew" && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ;;
+		esac
+	fi
 fi
 
 which zsh
