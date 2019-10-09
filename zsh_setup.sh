@@ -2,10 +2,14 @@
 
 mac_check=`uname`
 if [[ $mac_check == "Darwin" ]]; then
-	which brew
+	which brew &> /dev/null
 	if [[ $? -eq 0 ]]; then
 		printf "\nInstalling zsh using Homebrew\n"
 		brew install zsh
+		printf "\nInstalling gnu-sed using Homebrew\n"
+		brew install gnu-sed
+		printf "\nSymlinking gsed to sed\n"
+		ln -s /usr/local/bin/gsed /usr/local/bin/sed
 	else
 		printf "\nDo you want to install Homebrew (Y/N)? "
 		read brew_install
@@ -16,7 +20,7 @@ if [[ $mac_check == "Darwin" ]]; then
 	fi
 fi
 
-which zsh
+which zsh &> /dev/null
 if [[ $? -eq 0 ]]; then
 	printf "\nzsh already installed"
 else
@@ -37,7 +41,7 @@ else
 	fi
 fi
 
-which git
+which git &> /dev/null
 if [[ $? -eq 0 ]]; then
 	curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install.sh
 	chmod +x install.sh
@@ -46,7 +50,7 @@ if [[ $? -eq 0 ]]; then
 	git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	rm install.sh
-	sed -i '/plugins=(git)/c\plugins=(git zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)' ~/.zshrc
+	gsed -i '/plugins=(git)/c\plugins=(git zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)' ~/.zshrc
 else
 	printf "\nPlease install git and try again"
 fi
