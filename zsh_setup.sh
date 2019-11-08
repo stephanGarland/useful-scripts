@@ -46,12 +46,13 @@ if [[ $? -eq 0 ]]; then
 	curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install.sh
 	chmod +x install.sh
 	`./install.sh --unattended`
-	git clone https://github.com/djui/alias-tips.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/alias-tips
+	git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
 	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 	git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	rm install.sh
-	sed -i'' '/plugins=(git)/c\plugins=(alias-tips colored-man-pages git gitignore wd web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)' ~/.zshrc
+	sed -i'' '/plugins=(git)/c\plugins=(colored-man-pages git gitignore wd web-search you-should-use zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)' ~/.zshrc
+	sed -i'' '/plugins=/a export YSU_MESSAGE_FORMAT="Use %alias instead of %command"' ~/.zshrc
 	#sed -i'' '/ZSH_THEME=/c\ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
 	#sed -i'' '/ZSH_THEME=/a POWERLEVEL9K_MODE="awesome-patched"' ~/.zshrc
 	sed -i'' '/# ENABLE_CORRECTION/c\ENABLE_CORRECTION="true"' ~/.zshrc
