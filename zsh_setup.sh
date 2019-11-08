@@ -52,7 +52,7 @@ if [[ $? -eq 0 ]]; then
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	rm install.sh
 	sed -i'' '/plugins=(git)/c\plugins=(colored-man-pages git gitignore wd web-search you-should-use zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)' ~/.zshrc
-	sed -i'' '/plugins=/a export YSU_MESSAGE_FORMAT="export YSU_MESSAGE_FORMAT="$(tput setaf 1)Use %alias instead of %command $(tput sgr0)"' ~/.zshrc
+	sed  -i'' '/plugins=(colored/a \\nexport YSU_MESSAGE_FORMAT="$(tput setaf 1)Use %alias instead of %command $(tput sgr0)"' ~/.zshrc
 	#sed -i'' '/ZSH_THEME=/c\ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
 	#sed -i'' '/ZSH_THEME=/a POWERLEVEL9K_MODE="awesome-patched"' ~/.zshrc
 	sed -i'' '/# ENABLE_CORRECTION/c\ENABLE_CORRECTION="true"' ~/.zshrc
