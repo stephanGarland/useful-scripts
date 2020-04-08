@@ -6,4 +6,4 @@ Run `master.sh` to install/check for everything (currently git, htop, micro, mc,
 
 If you'd just like zsh/oh-my-zsh, you can `source check_env.sh` and then run `zsh_setup.sh`.
 
-This has been tested on Amazon Linux, Debian, CentOS, Raspbian, RHEL, SuSE, and Ubuntu. You can see what it's checking for in `check_env.sh`; if your distro is missing, please submit a PR.
+This has been tested on Amazon Linux, Debian, CentOS, Fedora, Raspbian, RHEL, SuSE, and Ubuntu. You can see what it's checking for in `check_env.sh`; if your distro is missing, please submit a PR.
