@@ -27,7 +27,7 @@ else
         printf "\nSorry, your distro is not currently supported!"
         exit 127
     fi
-    sudo "$pakman" "$upd" && sudo "$pakman" install -y zsh
+	sudo "$pakman" install -y zsh
 fi
 
 command -v git &> /dev/null
