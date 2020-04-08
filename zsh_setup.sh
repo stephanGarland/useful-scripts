@@ -1,8 +1,7 @@
 #!/bin/bash
 
-mac_check=`uname`
 if [[ $mac_check == "Darwin" ]]; then
-	which brew &> /dev/null
+	command -v brew &> /dev/null
 	if [[ $? -eq 0 ]]; then
 		printf "\nInstalling zsh using Homebrew\n"
 		brew install zsh
@@ -20,45 +19,37 @@ if [[ $mac_check == "Darwin" ]]; then
 	fi
 fi
 
-which zsh &> /dev/null
+command -v zsh &> /dev/null
 if [[ $? -eq 0 ]]; then
 	printf "\nzsh already installed"
 else
-	distro=`cat /etc/os-release | grep -w ID`
-	if [[ $distro =~ "debian" || "ubuntu" ]]; then
-		printf "\nI will now ask for your sudo privileges to install zsh"
-		# apt-get for backwards compatibility
-		sudo apt-get update && sudo apt-get install -y zsh
-	elif [[ $distro =~ "fedora" ]]; then
-		printf "\nI will now ask for your sudo privileges to install zsh"
-		sudo yum update && sudo yum install -y zsh
-	elif [[ $distro =~ "suse" ]]; then
-		printf "\nI will now ask for your sudo privileges to install zsh"
-		sudo zypper refresh && sudo zypper install -y zsh
-	else
-		printf "\nSorry, your distro is not currently supported!"
-		exit 127
-	fi
+    if [[ $pakman == "error" ]]; then
+        printf "\nSorry, your distro is not currently supported!"
+        exit 127
+    fi
+	sudo "$pakman" install -y zsh
 fi
 
-which git &> /dev/null
+command -v git &> /dev/null
 if [[ $? -eq 0 ]]; then
 	curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install.sh
 	chmod +x install.sh
-	`./install.sh --unattended`
+	$(./install.sh --unattended)
 	git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
 	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 	git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 	rm install.sh
+	
 	sed -i'' '/plugins=(git)/c\plugins=(colored-man-pages git gitignore wd web-search you-should-use zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)' ~/.zshrc
 	sed  -i'' '/plugins=(colored/a \\nexport YSU_MESSAGE_FORMAT="$(tput setaf 1)Use %alias instead of %command $(tput sgr0)"' ~/.zshrc
-	#sed -i'' '/ZSH_THEME=/c\ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
-	#sed -i'' '/ZSH_THEME=/a POWERLEVEL9K_MODE="awesome-patched"' ~/.zshrc
+	sed -i'' '/ZSH_THEME=/c\ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
+	sed -i'' '/ZSH_THEME=/a \\nPOWERLEVEL9K_MODE="awesome-patched"' ~/.zshrc
 	sed -i'' '/# ENABLE_CORRECTION/c\ENABLE_CORRECTION="true"' ~/.zshrc
 else
 	printf "\nPlease install git and try again"
 fi
 
-sudo chsh -s `which zsh` `whoami` &> /dev/null
+sudo chsh -s $(command -v zsh) $(whoami) &> /dev/null
 zsh
