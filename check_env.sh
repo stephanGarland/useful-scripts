@@ -9,7 +9,7 @@ if [[ "$distro" =~ "debian" || "$distro" =~ "ubuntu" ]]; then
 elif [[ "$distro" =~ "fedora" || "$distro" =~ "rhel" || "$distro" =~ "amzn" ]]; then
     export pakman="yum"
     export upd="update"
-elif [[ "$distro" =~ "suse" ]]; then
+elif [[ "$distro" =~ "suse" || "$distro" =~ "sles" ]]; then
     export pakman="zypper"
     export upd="refresh"
 else
