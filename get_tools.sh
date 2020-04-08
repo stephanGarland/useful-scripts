@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo "$pakman $upd"
+sudo "$pakman" "$upd" -y
 printf "\nInstalling/checking git, htop, micro, mc, and tree\n"
 sudo "$pakman" install -y git htop mc tree
 
