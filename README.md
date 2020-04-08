@@ -1,13 +1,9 @@
 # useful-scripts
 
-Mostly used by me with Terraform to get what I want in a sandbox environment, but if you want an easy way to get a great CLI editor and zsh (with oh-my-zsh and a modified ~/.zshrc) installed, be my guest. 
+MacOS requires Homebrew (it'll install it for you if you don't have it), and also downloads and symlinks gnu-sed as sed, because BSD sed doesn't handle in-place with \c very well. If you don't want it afterwards, rm /usr/local/bin/sed to delete the symlink, and brew remove gnu-sed to remove the package.
 
-Note that for MacOS, it requires Homebrew (it'll install it for you if you don't have it), and also downloads and symlinks gnu-sed as sed, because BSD sed doesn't handle in-place with \c very well. If you don't want it afterwards, rm /usr/local/bin/sed to delete the symlink, and brew remove gnu-sed to remove the package.
+Run `master.sh` to install/check for everything (currently git, htop, micro, mc, and tree). Checking for git after having git cloned is largely redundant, yes, but I figured I'd include it on the off-chance it was somehow removed after cloning the repo, or if this script was installed by other means.
 
-Run master.sh if you want both micro (world's greatest CLI editor; vi and emacs can have their war) and zsh installed.
+If you'd just like zsh/oh-my-zsh, you can `source check_env.sh` and then run `zsh_setup.sh`.
 
-Run the other two on their own if you want what they're offering.
-
-zsh_setup works on anything declaring itself as "fedora", "debian," or "suse" in /etc/os.release, e.g. Red Hat/Fedora, Debian/Ubuntu, SuSE, AWS Linux, etc. as well as Darwin (MacOS). If you want to add functionality for something else, by all means, submit a PR.
-
-get_micro works on anything that has curl. Probably. x86, amd64, and arm work.
+This has been tested on Amazon Linux, Debian, CentOS, Raspbian, RHEL, SuSE, and Ubuntu. You can see what it's checking for in `check_env.sh`; if your distro is missing, please submit a PR.
