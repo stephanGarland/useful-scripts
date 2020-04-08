@@ -2,7 +2,7 @@
 
 read -p "Do you want to update all packages (Y/N)? " -n 1 -r
 
-if [[ $REPLY =~ ^[Yy]$ ]] then
+if [[ $REPLY =~ ^[Yy]$ ]]; then
     sudo "$pakman" "$upd" -y
 else
     printf"\nOK, skipping update"
