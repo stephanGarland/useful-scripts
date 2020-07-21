@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $mac_check == "Darwin" ]]; then
+if [[ $mac_check == Darwin ]]; then
 	command -v brew &> /dev/null
 	if [[ $? -eq 0 ]]; then
 		printf "\nInstalling zsh using Homebrew\n"
@@ -23,7 +23,7 @@ command -v zsh &> /dev/null
 if [[ $? -eq 0 ]]; then
 	printf "\nzsh already installed"
 else
-    if [[ $pakman == "error" ]]; then
+    if [[ $pakman == error ]]; then
         printf "\nSorry, your distro is not currently supported!"
         exit 127
     fi
@@ -53,6 +53,12 @@ else
 fi
 
 printf "\nChanging your shell to zsh\n"
-sudo usermod --shell $(which zsh) $(whoami)
+
+if [[ $mac_check == Darwin ]]; then
+    sudo dscl . -delete /Users/$(whoami) UserShell
+    sudo dscl . -append /Users/$(whoami) /bin/zsh
+else
+    sudo usermod --shell $(which zsh) $(whoami)
+fi
 
 zsh
