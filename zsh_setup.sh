@@ -44,6 +44,7 @@ if [[ $? -eq 0 ]]; then
 	
 	sed -i'' '/plugins=(git)/c\plugins=(colored-man-pages git gitignore wd web-search you-should-use zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)' ~/.zshrc
 	sed  -i'' '/plugins=(colored/a \\nexport YSU_MESSAGE_FORMAT="$(tput setaf 1)Use %alias instead of %command $(tput sgr0)"' ~/.zshrc
+	sed -i'' '/export YSU/a \\nexport ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#586e75"' ~/.zshrc
 	sed -i'' '/ZSH_THEME=/c\ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
 	sed -i'' '/ZSH_THEME=/a \\nPOWERLEVEL9K_MODE="awesome-patched"' ~/.zshrc
 	sed -i'' '/# ENABLE_CORRECTION/c\ENABLE_CORRECTION="true"' ~/.zshrc
@@ -51,5 +52,7 @@ else
 	printf "\nPlease install git and try again"
 fi
 
-sudo chsh -s $(command -v zsh) $(whoami) &> /dev/null
+printf "\nChanging your shell to zsh\n"
+sudo usermod --shell $(which zsh) $(whoami)
+
 zsh
