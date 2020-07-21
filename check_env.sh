@@ -6,7 +6,7 @@ export distro=$(awk -F= '$1=="ID" {print $2}' /etc/*release || lsb_release -si) 
 if [[ $distro =~ debian || $distro =~ raspbian || $distro =~ ubuntu ]]; then
     export pakman="apt-get"
     export upd="update"
-elif [[ "$distro" =~ "fedora" || "$distro" =~ "rhel" || "$distro" =~ "centos" || "$distro" =~ "amzn" ]]; then
+elif [[ $distro =~ fedora || $distro =~ rhel || $distro =~ centos || $distro =~ amzn ]]; then
     export pakman="yum"
     export upd="update"
 elif [[ $distro =~ suse || $distro =~ sles ]]; then
