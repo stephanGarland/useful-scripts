@@ -7,8 +7,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 else
     printf"\nOK, skipping update"
 fi
-printf "\nInstalling/checking git, htop, micro, mc, and tree\n"
-sudo "$pakman" install -y git htop mc tree
+printf "\nInstalling/checking git, glances, htop, micro, mc, ncdu, and tree\n"
+sudo "$pakman" install -y git glances htop mc ncdu tree
 
 curl -fsSl https://getmic.ro | bash
 sudo mv micro /usr/local/bin
