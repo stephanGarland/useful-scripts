@@ -47,7 +47,6 @@ if [[ $? -eq 0 ]]; then
 	sed -i'' '/export YSU/a \\nexport ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#586e75"' ~/.zshrc
 	sed -i'' '/ZSH_THEME=/c\ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
 	sed -i'' '/ZSH_THEME=/a \\nPOWERLEVEL9K_MODE="awesome-patched"' ~/.zshrc
-	sed -i'' '/# ENABLE_CORRECTION/c\ENABLE_CORRECTION="true"' ~/.zshrc
 else
 	printf "\nPlease install git and try again"
 fi
