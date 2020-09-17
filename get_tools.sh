@@ -12,7 +12,7 @@ if [[ $cloudinit != "unattended" ]]; then
     printf "\nInstalling/checking git, glances, htop, micro, mc, ncdu, and tree\n"
 fi
 
-sudo "$pakman" install -y git glances htop mc ncdu tree
+sudo "$pakman" install -y git glances htop mc ncdu tree zsh
 
 curl -fsSl https://getmic.ro | bash
 sudo mv micro /usr/local/bin
