@@ -27,12 +27,12 @@ else
         printf "\nSorry, your distro is not currently supported!"
         exit 127
     fi
-	sudo "$pakman" install -y zsh
+	sudo $pakman install -y zsh
 fi
 
 command -v git &> /dev/null
 if [[ $? -eq 0 ]]; then
-	curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install.sh
+	curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o ./install.sh
 	chmod +x install.sh
 	$(./install.sh --unattended)
 	git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use

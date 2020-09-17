@@ -7,12 +7,15 @@ export cloudinit=$1
 if [[ $distro =~ debian || $distro =~ raspbian || $distro =~ ubuntu ]]; then
     export pakman="apt-get"
     export upd="update"
+    export upg="upgrade"
 elif [[ $distro =~ fedora || $distro =~ rhel || $distro =~ centos || $distro =~ amzn ]]; then
     export pakman="yum"
-    export upd="update"
+    export upd="check-update"
+    export upg="update"
 elif [[ $distro =~ suse || $distro =~ sles ]]; then
     export pakman="zypper"
     export upd="refresh"
+    export upg="update"
 else
     export pakman="error"
 fi
