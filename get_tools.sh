@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 sudo $pakman $upd
 if [[ $cloudinit != "unattended" ]]; then

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 if [[ $mac_check == Darwin ]]; then
 	command -v brew &> /dev/null
