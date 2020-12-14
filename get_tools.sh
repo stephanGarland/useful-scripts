@@ -9,10 +9,10 @@ if [[ $cloudinit != "unattended" ]]; then
     else
         printf"\nOK, skipping update"
     fi
-    printf "\nInstalling/checking git, glances, htop, micro, mc, ncdu, and tree\n"
+    printf "\nInstalling/checking curl, git, glances, htop, micro, mc, ncdu, smartmontools, tree, and zsh\n"
 fi
 
-sudo $pakman install -y git glances htop mc ncdu tree zsh
+sudo $pakman install -y curl git glances htop mc ncdu smartmontools tree zsh
 
 curl -fsSl https://getmic.ro | bash
 sudo mv micro /usr/local/bin
