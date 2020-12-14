@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export mac_check=$(uname) &> /dev/null
 export distro=$(awk -F= '$1=="ID" {print $2}' /etc/*release || lsb_release -si) &> /dev/null
